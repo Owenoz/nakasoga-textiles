@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, Heart, Search, Menu, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -46,12 +47,21 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-serif font-bold text-forest-700">
-              Nakasoga
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="relative h-12 w-8 flex-shrink-0">
+              <Image
+                src="/logo.jpg"
+                alt="Nakasoga Textile Centre"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
-            <div className="hidden sm:block text-xs text-muted-foreground">
-              Textile Centre
+            <div className="hidden sm:block">
+              <div className="text-xl font-serif font-bold text-forest-700 leading-tight">
+                Nakasoga Textile
+              </div>
+              <div className="text-xs text-muted-foreground">Authentic African Textiles</div>
             </div>
           </Link>
 

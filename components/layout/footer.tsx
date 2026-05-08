@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
@@ -8,7 +9,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-serif font-bold mb-4">Nakasoga Textile Centre</h3>
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="relative h-12 w-8 flex-shrink-0">
+                <Image
+                  src="/logo.jpg"
+                  alt="Nakasoga Textile Centre"
+                  fill
+                  className="object-contain rounded"
+                />
+              </div>
+              <h3 className="text-xl font-serif font-bold">Nakasoga Textile Centre</h3>
+            </div>
             <p className="text-earth-200 text-sm mb-4">
               Premium East African textiles and fashion. Beautiful, high-quality fabrics with African soul.
             </p>

@@ -14,11 +14,23 @@ export const metadata: Metadata = {
   title: "Nakasoga Textile Centre - Premium East African Textiles & Fashion",
   description: "Beautiful, high-quality fabrics, clothing, and home textiles with African soul. Visit us at Magoba Arcade or City Mall. Shop authentic Ankara, Kitenge, and traditional East African fashion.",
   keywords: ["African textiles", "Ankara fabric", "Kitenge", "East African fashion", "traditional fabrics", "African clothing", "Nakasoga", "Kampala textiles"],
+  icons: {
+    icon: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
   openGraph: {
     title: "Nakasoga Textile Centre - Premium East African Textiles & Fashion",
     description: "Beautiful, high-quality fabrics, clothing, and home textiles with African soul. Visit us at Magoba Arcade or City Mall.",
     type: "website",
     locale: "en_UG",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 768,
+        height: 1344,
+        alt: "Nakasoga Textile Centre Logo",
+      },
+    ],
   },
 };
 
