@@ -1,10 +1,13 @@
-import { getFeaturedProducts } from "@/lib/data/products";
+"use client";
+
+import { useProductsStore } from "@/lib/store/products-store";
 import ProductCard from "@/components/products/product-card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function BestSellers() {
-  const bestSellers = getFeaturedProducts().slice(0, 8);
+  const { products } = useProductsStore();
+  const bestSellers = products.filter(p => p.featured).slice(0, 8);
 
   return (
     <section className="py-16 bg-white">

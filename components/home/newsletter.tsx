@@ -38,7 +38,7 @@ export default function Newsletter() {
               required
               className="bg-white text-black flex-1"
             />
-            <Button type="submit" size="lg" className="bg-gold-500 hover:bg-gold-600 text-white font-semibold">
+            <Button type="submit" size="lg" className="bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold">
               Subscribe
             </Button>
           </form>

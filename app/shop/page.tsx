@@ -2,7 +2,7 @@
 
 import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { products } from "@/lib/data/products";
+import { useProductsStore } from "@/lib/store/products-store";
 import ProductCard from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal } from "lucide-react";
@@ -10,6 +10,7 @@ import { SlidersHorizontal } from "lucide-react";
 function ShopContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
+  const { products } = useProductsStore();
   
   const [showFilters, setShowFilters] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || "all");

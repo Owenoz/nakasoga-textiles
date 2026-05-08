@@ -79,7 +79,7 @@ export default function HeroBanner() {
                   {slide.subtitle}
                 </p>
                 <Link href={slide.link}>
-                  <Button size="lg" className="bg-gold-500 hover:bg-gold-600 text-white font-semibold px-8">
+                  <Button size="lg" className="bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold px-8">
                     {slide.cta}
                   </Button>
                 </Link>
@@ -112,7 +112,7 @@ export default function HeroBanner() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-2 rounded-full transition-all ${
-              index === currentSlide ? "w-8 bg-gold-500" : "w-2 bg-white/50"
+              index === currentSlide ? "w-8 bg-terracotta-500" : "w-2 bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

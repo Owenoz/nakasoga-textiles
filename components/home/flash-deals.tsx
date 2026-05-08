@@ -1,8 +1,11 @@
-import { getFlashDeals } from "@/lib/data/products";
+"use client";
+
+import { useProductsStore } from "@/lib/store/products-store";
 import ProductCard from "@/components/products/product-card";
 
 export default function FlashDeals() {
-  const flashDeals = getFlashDeals();
+  const { products } = useProductsStore();
+  const flashDeals = products.filter(p => p.flashDeal);
 
   if (flashDeals.length === 0) return null;
 

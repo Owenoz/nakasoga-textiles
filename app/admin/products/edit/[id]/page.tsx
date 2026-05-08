@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { useAuthStore } from "@/lib/store/auth-store";
-import { products } from "@/lib/data/products";
+import { useProductsStore } from "@/lib/store/products-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ImageGallerySelector } from "@/components/admin/image-gallery-selector";
 import { ArrowLeft, Loader2, Plus, X } from "lucide-react";
 
 export default function EditProductPage() {
   const router = useRouter();
   const params = useParams();
   const { isAuthenticated, isAdmin } = useAuthStore();
+  const { products, updateProduct } = useProductsStore();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -96,6 +98,7 @@ export default function EditProductPage() {
     const updatedProduct = {
       ...product,
       name: formData.name,
+      slug: formData.name.toLowerCase().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-"),
       description: formData.description,
       price: parseFloat(formData.price),
       originalPrice: formData.originalPrice ? parseFloat(formData.originalPrice) : undefined,
@@ -114,8 +117,10 @@ export default function EditProductPage() {
       flashDeal: formData.flashDeal,
     };
 
-    console.log("Updated Product:", updatedProduct);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Update product in store
+    if (product?.id) {
+      updateProduct(product.id, updatedProduct);
+    }
 
     setSaving(false);
     router.push("/admin/products");
@@ -236,6 +241,13 @@ export default function EditProductPage() {
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
+                
+                {/* Image Gallery Selector */}
+                <ImageGallerySelector
+                  selectedImages={images}
+                  onImagesChange={setImages}
+                />
+                
                 {images.length > 0 && (
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {images.map((img, index) => (

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { getProductBySlug, products } from "@/lib/data/products";
+import { useProductsStore } from "@/lib/store/products-store";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice, calculateDiscount } from "@/lib/utils";
@@ -18,6 +18,7 @@ import SizeGuide from "@/components/products/size-guide";
 
 export default function ProductPage() {
   const params = useParams();
+  const { products, getProductBySlug } = useProductsStore();
   const product = getProductBySlug(params.slug as string);
 
   const [selectedImage, setSelectedImage] = useState(0);
@@ -88,7 +89,7 @@ export default function ProductPage() {
                 priority
               />
               {discount > 0 && (
-                <Badge className="absolute top-4 left-4 bg-gold-500">-{discount}%</Badge>
+                <Badge className="absolute top-4 left-4 bg-terracotta-500">-{discount}%</Badge>
               )}
               {/* Zoom Button */}
               <button

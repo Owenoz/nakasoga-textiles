@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuthStore } from "@/lib/store/auth-store";
+import { useProductsStore } from "@/lib/store/products-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ImageGallerySelector } from "@/components/admin/image-gallery-selector";
 import { ArrowLeft, Loader2, Plus, X, Upload } from "lucide-react";
 
 export default function AddProductPage() {
   const router = useRouter();
   const { isAuthenticated, isAdmin } = useAuthStore();
+  const { addProduct } = useProductsStore();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -112,11 +115,8 @@ export default function AddProductPage() {
       flashDeal: formData.flashDeal,
     };
 
-    // In production, this would save to database
-    console.log("New Product:", newProduct);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Save to products store
+    addProduct(newProduct);
 
     setSaving(false);
     router.push("/admin/products");
@@ -272,6 +272,13 @@ export default function AddProductPage() {
                     <span className="sm:hidden ml-2">Add Image</span>
                   </Button>
                 </div>
+                
+                {/* Image Gallery Selector */}
+                <ImageGallerySelector
+                  selectedImages={images}
+                  onImagesChange={setImages}
+                />
+                
                 {images.length > 0 && (
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                     {images.map((img, index) => (
@@ -293,7 +300,7 @@ export default function AddProductPage() {
                 )}
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                   <Upload className="h-3 w-3" />
-                  Add image URLs. First image will be the main product image.
+                  Add image URLs or choose from gallery. First image will be the main product image.
                 </p>
               </div>
             </div>

@@ -168,7 +168,7 @@ export default function Header() {
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gold-500 text-white text-xs flex items-center justify-center font-semibold">
+                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-terracotta-500 text-white text-xs flex items-center justify-center font-semibold">
                     {totalItems}
                   </span>
                 )}

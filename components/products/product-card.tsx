@@ -47,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <Badge className="bg-forest-600 hover:bg-forest-700">New</Badge>
           )}
           {discount > 0 && (
-            <Badge className="bg-gold-500 hover:bg-gold-600">-{discount}%</Badge>
+            <Badge className="bg-terracotta-500 hover:bg-terracotta-600">-{discount}%</Badge>
           )}
         </div>
 

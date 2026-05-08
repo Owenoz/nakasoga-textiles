@@ -2,18 +2,19 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { searchProducts } from "@/lib/data/products";
+import { useProductsStore } from "@/lib/store/products-store";
 import ProductCard from "@/components/products/product-card";
 import { Search } from "lucide-react";
 
 function SearchResults() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
+  const { searchProducts } = useProductsStore();
   const [results, setResults] = useState(searchProducts(query));
 
   useEffect(() => {
     setResults(searchProducts(query));
-  }, [query]);
+  }, [query, searchProducts]);
 
   return (
     <div className="min-h-screen bg-earth-50 py-8">
