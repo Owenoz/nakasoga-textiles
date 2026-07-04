@@ -4,7 +4,6 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 
-// Use system fonts as fallback (Google Fonts causing network issues)
 const fontConfig = {
   sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
   serif: "Georgia, 'Times New Roman', Times, serif",
@@ -12,46 +11,55 @@ const fontConfig = {
 
 export const metadata: Metadata = {
   title: "Nakasoga Textile Centre - Premium East African Textiles & Fashion",
-  description: "Beautiful, high-quality fabrics, clothing, and home textiles with African soul. Visit us at Magoba Arcade or City Mall. Shop authentic Ankara, Kitenge, and traditional East African fashion.",
-  keywords: ["African textiles", "Ankara fabric", "Kitenge", "East African fashion", "traditional fabrics", "African clothing", "Nakasoga", "Kampala textiles"],
+  description:
+    "Beautiful, high-quality fabrics, clothing, and home textiles with African soul. Visit us at Magoba Arcade or City Mall. Shop authentic Ankara, Kitenge, and traditional East African fashion.",
+  keywords: [
+    "African textiles", "Ankara fabric", "Kitenge", "East African fashion",
+    "traditional fabrics", "African clothing", "Nakasoga", "Kampala textiles",
+  ],
   icons: {
     icon: "/logo.jpg",
     apple: "/logo.jpg",
   },
   openGraph: {
     title: "Nakasoga Textile Centre - Premium East African Textiles & Fashion",
-    description: "Beautiful, high-quality fabrics, clothing, and home textiles with African soul. Visit us at Magoba Arcade or City Mall.",
+    description: "Beautiful, high-quality fabrics, clothing, and home textiles with African soul.",
     type: "website",
     locale: "en_UG",
-    images: [
-      {
-        url: "/logo.jpg",
-        width: 768,
-        height: 1344,
-        alt: "Nakasoga Textile Centre Logo",
-      },
-    ],
+    images: [{ url: "/logo.jpg", width: 768, height: 1344, alt: "Nakasoga Textile Centre Logo" }],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            :root {
-              --font-sans: ${fontConfig.sans};
-              --font-serif: ${fontConfig.serif};
-            }
-          `
-        }} />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              :root {
+                --font-sans: ${fontConfig.sans};
+                --font-serif: ${fontConfig.serif};
+              }
+              /* Prevent flash of unstyled ambient background */
+              body {
+                background: #fdfaf4;
+              }
+            `,
+          }}
+        />
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3017067502381124"
+          crossOrigin="anonymous"
+        />
       </head>
-      <body className="font-sans antialiased">
+      {/*
+        ambient-bg   → fixed pseudo-element mesh gradient (defined in globals.css)
+        The min-h-screen on <main> ensures footer always anchors to bottom.
+      */}
+      <body className="font-sans antialiased ambient-bg">
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
